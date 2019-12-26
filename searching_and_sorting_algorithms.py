@@ -80,15 +80,13 @@ class HashTable:
 
     def get(self, key):
         data = None
-        stop = False
         found = False
-        position = startslot
-        while self.slots[position] != None and not found and not stop:
+        position=0
+        while position < self.size and not found:
             if self.slots[position] == key:
                 found = True
                 data = self.data[position]
-            else:
-                position = self.rehash(position, len(self.slots))
+            position +=1
         return data
 
     def __getitem__(self, key):
@@ -96,14 +94,6 @@ class HashTable:
 
     def __setitem__(self, key, data):
         return self.put(key, data)
-
-
-h = HashTable(11)
-h[54]= 'dog'
-h[66]= 'dog'
-print(h.data)
-print(h.slots)
-
 
 ## bubble sort 
 start_time = time.time()
@@ -127,14 +117,10 @@ def bubble_sort2(alist):
                 alist[i],alist[i+1]=alist[i+1],alist[i]
     return alist 
 
-
-def main():
-    alist=[1,6,77,8,3,4,5,6,7,4,5,6,67]
-    alist2=[1,6,77,8,3,4,5,6,7,4,5,6,67]
-    bubble_sort(alist)
-    bubble_sort2(alist2)
-    print(alist)
-    print(alist2)
-
 print("--- %s seconds ---" % (time.time() - start_time))
 print("--- %s seconds ---" % (time.time() - start_time2))
+
+if __name__ == '__main__': 
+   
+   
+
