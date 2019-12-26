@@ -1,3 +1,41 @@
+## sequential search of list 
+
+def seqScan(alist, item):
+   found=False
+   pos=0
+   while pos < len(alist) and not found:
+        if alist[pos] == item:
+            found=True
+        else: 
+            pos+=1 
+            
+def binarySearch(alist, item):
+    found=False
+    first=0
+    last=len(alist -1) 
+    while first <= last and not Found:
+        mid=(first+last)//2
+        if alist[mid] == item
+            found=True
+        else :
+            if item > alist[mid]:
+                last=mid-1
+            else: 
+                first=mid+1
+     return found 
+
+def binarySearch(alist, item):
+    found=False
+    midpoint=len(alist)//2
+    if midpoint == item:
+        found=True
+    else:
+        if midpoint > item :
+            binarySearch(alist[:midpoint],item)
+        else midpoint < item: 
+            binarySearch(alist[midpoint+1:],item)
+
+
 ## bubble sort 
 start_time = time.time()
 
