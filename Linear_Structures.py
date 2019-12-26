@@ -19,7 +19,7 @@ Contents:
 ## 1. push 2.pop 3. peek 4. size
 
 class Stack():
-   def __init__(self)
+   def __init__(self):
       self.items=[]
   
    def push(self,item):
@@ -39,8 +39,8 @@ class Stack():
 ## A queue is an adt which follows FIFO and supports the following methods 
 ## 1. enqueue 2. dequeu 3. size
 
-class Stack():
-   def __init__(self)
+class Queue():
+   def __init__(self):
       self.items=[]
       
    def enqueue(self, item):
@@ -54,8 +54,25 @@ class Stack():
 
 ## Dequeue:
 
-  
+ class Deque():
+   def __init__(self):
+      self.items=[]
 
+    def addFront(self):
+      self.items.append(item) 
+   
+    def addRear(self, item):
+      self.items.insert(0, item) 
+    
+    def removeFront(self):
+       return self.items.pop()
+       
+     def removeRear(self)
+       return self.items.pop(0)
+  
+   def size(self)
+      return len(self.items) 
+   
 ## Linked List:
 
 class Node: 
