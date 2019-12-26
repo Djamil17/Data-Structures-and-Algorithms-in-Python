@@ -1,3 +1,5 @@
+import time 
+import numbers
 ## sequential search of list 
 
 def seqScan(alist, item):
@@ -36,8 +38,6 @@ def binarySearch(alist, item):
             binarySearch(alist[midpoint+1:],item)
 
 ## hash table
-import numbers
-
 
 class HashTable:
     def __init__(self, size):
