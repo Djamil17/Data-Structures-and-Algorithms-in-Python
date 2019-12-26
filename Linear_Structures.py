@@ -15,9 +15,46 @@ Contents:
 
 ## Stack:
 
+## A stack is an adt which follows LIFO and supports the following methods 
+## 1. push 2.pop 3. peek 4. size
+
+class Stack():
+   def __init__(self)
+      self.items=[]
+  
+   def push(self,item):
+      self.items.append(item)
+    
+   def pop(self):
+      self.items.pop()
+      
+   def peek(self):
+     return self.items[-1]
+     
+   def size(self):
+      return len(self.items)
+   
 ## Queue:
 
+## A queue is an adt which follows FIFO and supports the following methods 
+## 1. enqueue 2. dequeu 3. size
+
+class Stack():
+   def __init__(self)
+      self.items=[]
+      
+   def enqueue(self, item):
+      self.items.insert(0,item)
+      
+   def dequeue(self):
+      self.items.pop()
+      
+   def size(self)
+      return len(self.items) 
+
 ## Dequeue:
+
+  
 
 ## Linked List:
 
