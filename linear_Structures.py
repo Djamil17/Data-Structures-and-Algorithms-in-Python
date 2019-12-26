@@ -86,8 +86,10 @@ class Node:
     
     def getNext(self):
         return self.head
+   
     def setData(self,newdata):
         return self.initdata=newdata 
+   
     def setNext(self,newnext):
         return self.next=newnext 
 
