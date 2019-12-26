@@ -36,59 +36,74 @@ def binarySearch(alist, item):
             binarySearch(alist[midpoint+1:],item)
 
 ## hash table
-## hashtable/map adt 
+import numbers
+
+
 class HashTable:
     def __init__(self, size):
         self.size = size
-        if not isinstance(self.size,numbers.Integral):
+        if not isinstance(self.size, numbers.Integral):
             raise TypeError('Size of slots must be a prime number')
-        self.slots= [None] * self.size
-        self.data= [None] * self.size 
+        self.slots = [None] * self.size
+        self.data = [None] * self.size
 
     def __str__(self):
         print(self.size)
         print(self.slots)
         print(self.data)
-    
-    def put(self, key, data):
-        hashvalue=hashfunction(key,len(self.slots))
 
-        if self.slots[hashvalue] == None :
-            self.slots[hashhvalue] = key
+
+    def put(self, key, data):
+        hashvalue = self.hashfunction(key, len(self.slots))
+        print(hashvalue)
+        if self.slots[hashvalue] is None:
+            self.slots[hashvalue] = key
             self.data[hashvalue] = data
         else:
             if self.slots[hashvalue] == key:
-                self.data[hashvalue]=data
+                self.data[hashvalue] = data
             else:
-                nextslot=rehash(hashvalue, len(self.slots))
-                while nextslot != None and self.slots[nextslot] != key: 
-                    nextslot=rehash(hashvalue, len(self.slots))
+                nextslot = self.rehash(hashvalue, self.size)
+                while nextslot != None and self.slots[nextslot] != key:
+                      nextslot = self.rehash(hashvalue, len(self.slots))
 
-                if self.slots[nextslot] == None: 
-                    self.slots[nextslot]=key
-                    self.data[nextslot]=data
+
+                if self.slots[nextslot] is None:
+                    self.slots[nextslot] = key
+                    self.data[nextslot] = data
+
+    def hashfunction(self, key, size):
+        return key%size
+
+    def rehash(self, oldhash, size):
+        return (oldhash + 1)%size
 
     def get(self, key):
-        stop=False
-        found=False
-        position=startslot
-        while self.slots[position] !=None and not found and not stop:
+        data = None
+        stop = False
+        found = False
+        position = startslot
+        while self.slots[position] != None and not found and not stop:
             if self.slots[position] == key:
-                stop=True
-                found=True 
-                return self.data[key]
+                found = True
+                data = self.data[position]
+            else:
+                position = self.rehash(position, len(self.slots))
+        return data
 
-    def hashfunction(self,key,size):
-        return key%size
-    
-    def rehash(self,oldhash,size):
-        return (oldhash+1)%size
-        
-    def __get__item(self,key):
+    def __getitem__(self, key):
         return self.get(key)
 
-    def __set_item(self, key ,data):
-        return self.put(key,data)
+    def __setitem__(self, key, data):
+        return self.put(key, data)
+
+
+h = HashTable(11)
+h[54]= 'dog'
+h[66]= 'dog'
+print(h.data)
+print(h.slots)
+
 
 ## bubble sort 
 start_time = time.time()
