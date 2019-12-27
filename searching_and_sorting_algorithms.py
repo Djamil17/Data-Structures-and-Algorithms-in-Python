@@ -117,8 +117,28 @@ def bubble_sort2(alist):
                 alist[i],alist[i+1]=alist[i+1],alist[i]
     return alist 
 
+## selection sort 
+def selectionSort(alist):
+    for fillslot in range(len(alist)-1,0, -1):
+        maxposition=0
+        for location in range(1, fillslot+1):
+            if alist[location] > alist[maxposition]:
+                print(alist[location], alist[maxposition])
+                maxposition= location
+
+        alist[fillslot], alist[maxposition]= alist[maxposition], alist[fillslot]
+
+    return alist
+
+alist=[1,66,77,33333,5,67,2]
+selectionSort(alist)
+print(alist)
+
+
 print("--- %s seconds ---" % (time.time() - start_time))
 print("--- %s seconds ---" % (time.time() - start_time2))
+
+
 
 if __name__ == '__main__': 
    
