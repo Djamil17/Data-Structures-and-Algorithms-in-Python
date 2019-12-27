@@ -138,3 +138,27 @@ class List(Node):
             previous.setNext(current.getNext())
             
   ## doubly linked list 
+
+class Node(object):
+
+def __init__(self, data, prev, next):
+self.data = data
+self.prev = prev
+self.next = next
+
+class DoubleLL(object):
+
+head = None
+tail = None
+
+def insert(self, item):
+
+new_object = Node(data = item)
+
+new_object.next = self.head
+new_object.prev = None
+
+if self.head is not None:
+self.head.prev = new_object
+
+self.head = new_object
