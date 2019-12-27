@@ -74,9 +74,7 @@ class Queue():
       return len(self.items) 
    
 ## Linked List:
-
-class Node: 
-   
+class Node:
     def __init__(self, initdata):
         self.data=initdata 
         self.next=None
@@ -85,7 +83,8 @@ class Node:
         return self.data
     
     def getNext(self):
-        return self.head
+        return self.next
+   def get
    
     def setData(self,newdata):
         return self.initdata=newdata 
@@ -162,3 +161,72 @@ if self.head is not None:
 self.head.prev = new_object
 
 self.head = new_object
+
+class dNode: 
+    def __init__(self, initdata):
+        self.data=initdata 
+        self.next=None
+        self.previous=None
+
+    def getData(self):
+        return self.data
+    
+    def getNext(self):
+        return self.next
+   
+    def getPrevious(self)
+        return self.previous
+   
+    def setData(self,newdata):
+        return self.initdata=newdata 
+   
+    def setNext(self,newnext):
+        return self.next=newnext 
+   
+    def setPrevious(self, newprev):
+        return self.previous=newprev 
+   
+class doublelinkedList(dNode):
+      def __init__(self):
+        self.head=None
+    
+      def add(self,item):
+        temp=Node(item)
+        temp.setNext(self.head)
+        self.head=temp 
+    
+      def length(self):
+        current=self.head
+        count=0
+        while current != None: 
+            current=current.getNext()
+            count+=1
+
+      def search(self, item):
+        current=self.head
+        found=False
+        while current != item and not found:   
+            if current.getNext() == item:
+                found=True
+            else:
+                current= current.getNext()
+
+        return current, found  
+
+    def remove(self, item):
+        current=self.head
+        previous= current.getPrevious()
+        found= False
+        while current != None and not found: 
+            if current.getNext()==item:
+                found=True
+            else: 
+                previous=current
+                current=current.getNext()
+
+        ## remove head 
+        if previous == None:
+            self.head=current.getNext()
+        else:
+            previous.setNext(current.getNext())
+            previous.setPrevious(current.getPrevious())
