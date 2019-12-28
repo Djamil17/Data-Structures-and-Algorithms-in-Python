@@ -239,3 +239,7 @@ class doublelinkedList(dNode):
         else:
             previous.setNext(current.getNext())
             previous.setPrevious(current.getPrevious())
+
+##endregion:**************
+            
+if __name__ == '__main__': 
