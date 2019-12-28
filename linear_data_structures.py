@@ -90,7 +90,10 @@ class Node:
 
     def setNext(self, newnext):
         self.next=newnext
-
+         
+    def __repr__(self):
+        return f'{self.data},{self.next}'  
+      
 class List:
     def __init__(self,initdata):
         n=Node()
@@ -138,6 +141,9 @@ class List:
             self.head = current.getNext()
         else:
             previous.setNext(current.getNext())
+     
+     def __repr__(self):
+        return f'{self.head}'
 
   ## doubly linked list 
 
