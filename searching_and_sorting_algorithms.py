@@ -36,6 +36,7 @@ def binarySearch(alist, item):
             binarySearch(alist[:midpoint],item)
         else midpoint < item: 
             binarySearch(alist[midpoint+1:],item)
+    return found 
 
 ## hash table
 
@@ -51,7 +52,6 @@ class HashTable:
         print(self.size)
         print(self.slots)
         print(self.data)
-
 
     def put(self, key, data):
         hashvalue = self.hashfunction(key, len(self.slots))
