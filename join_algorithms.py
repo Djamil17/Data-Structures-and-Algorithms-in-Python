@@ -1,3 +1,15 @@
+"""
+Script:join_algorithms.py
+Description: Description, explanation of join algorithms, 
+especially as applies to tables, or relations 
+Author: Djamil Lakhdar-Hamina, Carlos Perez 
+Contents: 
+1. Join algorithms, relational algebra, relation/tuple ADT 
+2. Relation, tuple, implentation 
+3. Nested loop join
+4. Hash table join
+5. Merge sort join 
+"""
 
 import random
 
@@ -47,4 +59,5 @@ print(l)
 n=nested_loop_join(l,r)
 print(list(n))
 
+#### endregion 
 
