@@ -13,6 +13,8 @@ Contents:
 
 import random
 
+## treating relation as matrix with header column 
+## in pythonic terms, a nested list with a header column at list[0]
 ## function
 class Relation:
 
@@ -49,18 +51,6 @@ def nested_loop_join(left_relation, right_relation):
             if ltuple == rtuple:
                 yield ltuple + rtuple
 
-#
-r= Relation(5,5)
-l= Relation(5,5)
-l.setAtt('foo','bar','tar', 'grault','baaz')
-r.setAtt('foo','bar','tar', 'grault','baaz')
-print(r)
-print(l)
-n=nested_loop_join(l,r)
-print(list(n))
-
 #### endregion 
 
 if __name__ == '__main__': 
-
-
