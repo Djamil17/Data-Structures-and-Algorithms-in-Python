@@ -1,3 +1,11 @@
+"""
+Script:searching_and_sorting_algorithms.py
+Description: Description, explanation of famous sorting and searching algorithms
+Author: Djamil Lakhdar-Hamina, Carlos Perez 
+Contents: TODO  
+"""
+
+
 import time 
 import numbers
 ## sequential search of list 
@@ -135,17 +143,7 @@ def selectionSort(alist):
 
     return alist
 
-alist=[1,66,77,33333,5,67,2]
-selectionSort(alist)
-print(alist)
-
-
-print("--- %s seconds ---" % (time.time() - start_time))
-print("--- %s seconds ---" % (time.time() - start_time2))
-
-
-
 if __name__ == '__main__': 
    
-   
+## endregion 
 
