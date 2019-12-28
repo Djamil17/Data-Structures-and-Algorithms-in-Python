@@ -79,14 +79,19 @@ class HashTable:
         return (oldhash + 1)%size
 
     def get(self, key):
+        startslot=self.hashfunction(key, self.size)
         data = None
         found = False
-        position=0
-        while position < self.size and not found:
+        stop= False
+        position=startslot
+        while position is not None and not found and not stop:
             if self.slots[position] == key:
                 found = True
                 data = self.data[position]
-            position +=1
+            else:
+               position=self.rehash(key, size.self)
+               if position=startslot:
+                  stop=True
         return data
 
     def __getitem__(self, key):
