@@ -75,67 +75,70 @@ class Queue():
    
 ## Linked List:
 class Node:
-    def __init__(self, initdata):
-        self.data=initdata 
-        self.next=None
+    def __init__(self):
+        self.data = None
+        self.next = None
 
     def getData(self):
         return self.data
-    
+
     def getNext(self):
         return self.next
-   def get
-   
-    def setData(self,newdata):
-        return self.initdata=newdata 
-   
-    def setNext(self,newnext):
-        return self.next=newnext 
 
-class List(Node):
-    def __init__(self):
-        self.head=None
-    
-    def add(self,item):
-        temp=Node(item)
+    def setData(self, newdata):
+        self.data=newdata
+
+    def setNext(self, newnext):
+        self.next=newnext
+
+class List:
+    def __init__(self,initdata):
+        n=Node()
+        n.setData(initdata)
+        self.head = n
+
+    def add(self, item):
+        a=Node()
+        a.setData(item)
+        temp = a
         temp.setNext(self.head)
-        self.head=temp 
-    
+        self.head = temp
+
     def length(self):
-        current=self.head
-        count=0
-        while current != None: 
-            current=current.getNext()
-            count+=1
+        current = self.head
+        count = 0
+        while current is not None:
+            current = current.getNext()
+            count = count + 1
+        return count
 
     def search(self, item):
-        current=self.head
-        found=False
-        while current != item and not found:   
-            if current.getNext() == item:
-                found=True
+        current = self.head
+        found = False
+        while current.getData() != item and not found:
+            if current == item:
+                found = True
             else:
-                current= current.getNext()
-
-        return current, found  
+                current = current.getNext()
+        return current, found
 
     def remove(self, item):
-        current=self.head
-        previous= None
-        found= False
-        while current != None and not found: 
-            if current.getNext()==item:
-                found=True
-            else: 
-                previous=current
-                current=current.getNext()
+        current = self.head
+        previous = None
+        found = False
+        while current is not None and not found:
+            if current.getData() == item:
+                found = True
+            else:
+                previous = current
+                current = current.getNext()
 
-        ## remove head 
-        if previous == None:
-            self.head=current.getNext() 
+        ## remove head
+        if previous is None:
+            self.head = current.getNext()
         else:
             previous.setNext(current.getNext())
-            
+
   ## doubly linked list 
 
 class Node(object):
