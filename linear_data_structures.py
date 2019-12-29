@@ -243,13 +243,78 @@ class doublelinkedList(dNode):
 ## region: dna 
 ## We will use two linked lists to represent 
 
-class DNA:
-   
-   nucleobase_kind=['','','','','']
-   
-   def __init__(self, 
-   
+class NucleoTide:
+    nucleobase_kind = ['A', 'T', 'C', 'G']
+    phosphate='p'
+    deoxyribose='d'
 
+    def __init__(self):
+        self.nucleotide=None
+        self.nextnucleotide=None
+        self.left_backbone=self.phosphate + '-'  + self.deoxyribose
+        self.right_backbone=self.deoxyribose + '-' + self.phosphate
+
+
+    def autosetBase(self):
+        self.nucleotide=random.sample(self.nucleobase_kind,1)[0]
+
+    def manualsetBase(self, item):
+        self.nucleotide=item
+
+    def autosetNext(self):
+        self.nextnucleotide=random.sample(self.nucleobase_kind,1)[0]
+
+    def setNext(self,item):
+        self.nextnucleotide = item
+
+    def getBase(self):
+        return self.nucleotide
+
+    def getNext(self):
+        return self.nextnucleotide
+
+    def display(self):
+        print(self.left_backbone  +'-' + self.nucleotide + self.nucleotide + '-' + self.right_backbone)
+
+
+class DNA(NucleoTide):
+
+    def pair_nitrogeneous_base(self,item):
+        temp=''
+        if item == 'A':
+            temp = 'T'
+        elif self.nucleotide == 'C':
+            temp = 'G'
+        elif self.nucleotide == 'T':
+            temp = 'A'
+        elif self.nucleotide == 'G':
+            temp = 'C'
+
+        return temp
+
+    def __init__(self):
+        base = NucleoTide()
+        pair_base = NucleoTide()
+        base.autosetBase()
+        self.head = base
+        pair_base.manualsetBase(self.pair_nitrogeneous_base(self.head.getBase()))
+        self.pair = pair_base
+        self.tail=None
+
+
+    def assembleGenome(self, length):
+        assembled = False
+        counter = 0
+        while counter > length and not assembled:
+            base = NucleoTide()
+            pair_base = NucleoTide()
+            base.setNext(self.head )
+            base.setNext(self.head )
+            pair_base.setNext(self.pair)
+            self.head=base
+            self.pair=pair_base
+
+            counter += 1
 ## endregion 
 
 ##endregion:**************
