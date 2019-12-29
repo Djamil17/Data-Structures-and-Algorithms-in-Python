@@ -239,6 +239,18 @@ class doublelinkedList(dNode):
         else:
             previous.setNext(current.getNext())
             previous.setPrevious(current.getPrevious())
+            
+## region: dna 
+## We will use two linked lists to represent 
+
+class DNA:
+   
+   nucleobase_kind=['','','','','']
+   
+   def __init__(self, 
+   
+
+## endregion 
 
 ##endregion:**************
             
