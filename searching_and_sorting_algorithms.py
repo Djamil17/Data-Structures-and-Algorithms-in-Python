@@ -162,7 +162,9 @@ def selectsort(alist):
 
 def mergesort(alist):
     if len(alist) > 1: 
+         
         print('Splitting:{}'.format(alist))
+      
         midpoint=len(alist)//2
         left=alist[:midpoint]
         right=alist[midpoint:]
