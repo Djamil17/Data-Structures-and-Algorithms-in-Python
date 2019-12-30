@@ -158,6 +158,47 @@ def selectsort(alist):
 
     return alist
 
+## region: mergesort
+
+def mergesort(alist):
+    if len(alist) > 1: 
+        print('Splitting:{}'.format(alist))
+        midpoint=len(alist)//2
+        left=alist[:midpoint]
+        right=alist[midpoint:]
+    
+        mergesort(left)
+        mergesort(right)
+        
+        i=j=k=0
+    
+        while i < len(left) and j < len(right):
+            if left[i] <= right[j]:
+                alist[k]=left[i]
+                i +=1
+                k+=1
+            else:
+                alist[k]=right[j]
+                j +=1
+                k+=1
+                
+    
+        print('Merging:{}'.format(alist))
+        
+        while i < len(left):
+            alist[k]=left[i]
+            i=i+1
+            k=k+1
+
+        while j < len(right):
+            alist[k]=right[j]
+            j=j+1
+            k=k+1
+    
+    return f'The merged list is : {alist}'
+    
+##endregion: *************
+
 if __name__ == '__main__': 
    
 ## endregion 
