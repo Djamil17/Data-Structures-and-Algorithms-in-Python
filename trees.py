@@ -45,27 +45,26 @@ class BinaryTree:
 
     def find(self,item):
         if self.root is None:
-            print('No value')
+            return None
         else:
-            self._find(item, self.root)
+            return self._find(item, self.root)
 
-    def _find(self,item ,node):
-        found=False
-        if node.data == item:
-            found=True
-        elif node.data < item:
-            if node.left==item:
-                found=True
+    def _find(self,val ,node):
+        if node.data == val:
+            return val
+        elif node.data < val:
+            if node.left==val :
+                return val
             else:
-                self._find(item, node.left)
-        elif node.data > item:
-            if node.right==item:
-                found=True
+                self._find(val, node.left)
+        elif node.data > val:
+            if node.right==val:
+                return val
             else:
-                self._find(item,node.right)
+                self._find(val,node.right)
 
-        return found
-
+        return val
+    
     def PrintTree(self):
         if self.root is not None:
             self._PrintTree(self.root)
@@ -78,10 +77,10 @@ class BinaryTree:
 
 
 ## Count edges to target
+if __name__=='main()': 
+main():
 b=BinaryTree()
 b.add(2)
 b.add(3)
 b.add(5)
 b.PrintTree()
-print(b.find(5))
-
