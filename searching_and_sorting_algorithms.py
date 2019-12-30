@@ -143,7 +143,21 @@ def selectionSort(alist):
 
     return alist
 
+def select(alist):
+    maxposition=0
+    for idx in range(len(alist)-1,0,1):
+        if alist[idx] > alist[maxposition]:
+            maxposition=idx
+
+    return maxposition
+
+def selectsort(alist):
+    for position in range(len(alist)-1, 0 ,-1):
+        maxposition=select(alist[position:])
+        alist[position], alist[maxposition]= alist[maxposition], alist[position]
+
+    return alist
+
 if __name__ == '__main__': 
    
 ## endregion 
-
