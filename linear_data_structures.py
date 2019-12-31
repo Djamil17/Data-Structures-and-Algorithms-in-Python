@@ -317,111 +317,76 @@ class DNA(NucleoTide):
 
             counter += 1
 ## endregion 
+
 ## region: using linked list for sparse matrix : https://www.geeksforgeeks.org/sparse-matrix-representation/
 class compactMatrixNode:
     def __init__(self):
         self.data = None
-        self.row=None
-        self.column=None
+        self.row = None
+        self.column = None
         self.next = None
 
     def getData(self):
         return self.data
-    
+
     def getRow(self):
-         return self.row
-    
+        return self.row
+
     def getColumn(self):
-         return self.column
+        return self.column
 
     def getNext(self):
         return self.next
 
     def setData(self, newdata):
-        self.data=newdata
-    
-    def setRow(self,rownum):
-         self.row=rownum
-         
-    def setColumn(self,columnnum):
-         self.column=columnnum
-        
+        self.data = newdata
+
+    def setRow(self, rownum):
+        self.row = rownum
+
+    def setColumn(self, columnnum):
+        self.column = columnnum
+
     def setNext(self, newnext):
-        self.next=newnext
-         
+        self.next = newnext
+
     def __repr__(self):
-        return f'{self.data},{self.row},{self.column},{self.next}' 
-      
+        return f'{self.data},{self.row},{self.column},{self.next}'
+
+
 class compactMatrixLinkedList:
-    def __init__(self):
-        self.head = None
+    def __init__(self, item):
+        n = compactMatrixNode()
+        n.setData(item)
+        n.setRow(0)
+        n.setColumn(0)
+        self.head = n
 
-    def add(self,item):
-        if self.head is None:
-            n=Node()
-            n.setData(initdata)
-            self.head = n
-        else: 
-            _add(self,item)    
-            
-    def _add(self, item):
-        a=Node()
-        a.setData(item)
-        temp = a
-        temp.setNext(self.head)
-        self.head = temp
+    def add(self, item,row,column):
+       node = compactMatrixNode()
+       node.setData(item)
+       temp = node
+       temp.setNext(self.head)
+       temp.setRow(row)
+       temp.setColumn(column)
+       self.head = temp
 
-    def length(self):
-        current = self.head
-        count = 0
-        while current is not None:
-            current = current.getNext()
-            count = count + 1
-        return count
 
-    def search(self, item):
-        current = self.head
-        found = False
-        while current.getData() != item and not found:
-            if current == item:
-                found = True
-            else:
-                current = current.getNext()
-        return current, found
+    def __repr__(self):
+        return f'{self.head}'
 
-    def remove(self, item):
-        current = self.head
-        previous = None
-        found = False
-        while current is not None and not found:
-            if current.getData() == item:
-                found = True
-            else:
-                previous = current
-                current = current.getNext()
-
-        ## remove head
-        if previous is None:
-            self.head = current.getNext()
-        else:
-            previous.setNext(current.getNext())
-     
 
 def convertSparsetoCompact(nested_list):
-    compactMatrix=compactMatrixLinkedList()
-    for i in range(len(nested_list)-1, 0, -1):
-        for j in range(len(nested_list)-1, 0 ,-1):
-            if nested_list[i,j] !=0:
-                print(
-                LinkedList.add()
-                LinkedList.setRow(i)
-                LinkedList.setColumn(j)
-                LinkedList.setData(nested_list[i,j])
-                   
+    compactMatrix = compactMatrixLinkedList
+    for row in range(len(nested_list[0:])):
+        for column in range(nested_list[row:][0]):
+            if nested_list[row][column] != 0:
+                compactMatrixLinkedList.add(nested_list[value], sub_list, value)
+    return compactMatrix
+
 ##endregion:**************
                    
 ## region: 
 if __name__ == '__main__': 
    main():
 ## endregion                  
-      
