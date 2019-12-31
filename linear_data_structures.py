@@ -316,7 +316,47 @@ class DNA(NucleoTide):
 
             counter += 1
 ## endregion 
+## region: using linked list for sparse matrix : https://www.geeksforgeeks.org/sparse-matrix-representation/
+class compactMatrixNode:
+    def __init__(self):
+        self.data = None
+        self.row=None
+        self.column=None
+        self.next = None
 
+    def getData(self):
+        return self.data
+    
+    def getRow(self):
+         return self.row
+    
+    def getColumn(self):
+         return self.column
+
+    def getNext(self):
+        return self.next
+
+    def setData(self, newdata):
+        self.data=newdata
+    
+    def setRow(self,rownum):
+         self.row=rownum
+         
+    def setColumn(self,columnnum):
+         self.column=columnnum
+        
+    def setNext(self, newnext):
+        self.next=newnext
+         
+    def __repr__(self):
+        return f'{self.data},{self.row},{self.column},{self.next}' 
+      
+class compactMatrix:
+
+def convertSparsetoCompact():
+   
+      
 ##endregion:**************
-            
 if __name__ == '__main__': 
+   main():
+      
