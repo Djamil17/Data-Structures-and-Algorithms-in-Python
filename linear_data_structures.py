@@ -355,21 +355,26 @@ class compactMatrixNode:
 
 
 class compactMatrixLinkedList:
-    def __init__(self, item):
-        n = compactMatrixNode()
-        n.setData(item)
-        n.setRow(0)
-        n.setColumn(0)
-        self.head = n
+    def __init__(self):
+        self.head = None
 
-    def add(self, item,row,column):
+    def add(self, item, row, column):
+        if self.head is None:
+            n = compactMatrixNode()
+            n.setData(item)
+            n.setRow(row)
+            n.setColumn(column)
+            self.head=n
+        else:
+            self._add(item, row, column)
+
+    def _add(self, item,row,column):
        node = compactMatrixNode()
        node.setData(item)
-       temp = node
-       temp.setNext(self.head)
-       temp.setRow(row)
-       temp.setColumn(column)
-       self.head = temp
+       node.setNext(self.head)
+       node.setRow(row)
+       node.setColumn(column)
+       self.head = node
 
 
     def __repr__(self):
@@ -377,12 +382,12 @@ class compactMatrixLinkedList:
 
 
 def convertSparsetoCompact(nested_list):
-    compactMatrix = compactMatrixLinkedList
+    compactMatrix = compactMatrixLinkedList()
     for row in range(len(nested_list[0:])):
         for column in range(len(nested_list[row:][0])):
             if nested_list[row][column] != 0:
                 print('Storing {} in row {} and column {}'.format(nested_list[row][column], row, column))
-                compactMatrixLinkedList.add(nested_list[row][column], row, column)
+                compactMatrix.add(nested_list[row][column], row, column)
                   
     return compactMatrix
 
