@@ -381,7 +381,9 @@ def convertSparsetoCompact(nested_list):
     for row in range(len(nested_list[0:])):
         for column in range(len(nested_list[row:][0])):
             if nested_list[row][column] != 0:
-                compactMatrixLinkedList.add(nested_list[value], sub_list, value)
+                print('Storing {} in row {} and column {}'.format(nested_list[row][column], row, column))
+                compactMatrixLinkedList.add(nested_list[row][column], row, column)
+                  
     return compactMatrix
 
 ##endregion:**************
