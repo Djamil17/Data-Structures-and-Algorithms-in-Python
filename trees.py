@@ -5,13 +5,29 @@ Date: 07/11/2019
 """
 
 """
-Analysis of NCA-algorithm
-
 
 """
+## List of list style 
+
+def BinaryTree(r):
+    return [r, [], []]
+
+def insertLeft(root, newbranch):
+    temp=root.pop(1)
+    if len(temp) > 1 : 
+        root.insert(1, [newbrach, temp, [])
+    else:
+        root.insert(1, [newbrach, [], [])
+                        
+def insertRight(root, newbranch):
+    temp=root.pop(2)
+    if len(temp) > 1 : 
+        root.insert(2, [newbrach, temp, [])
+    else:
+        root.insert(2, [newbrach, [], [])
 
 
-## Read in data
+## Node and reference style
 class Node:
 
     def __init__(self, data):
