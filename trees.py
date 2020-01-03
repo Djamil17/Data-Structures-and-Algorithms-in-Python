@@ -58,7 +58,7 @@ class priorityHeap:
             i=mc 
             
     def getMinKey(self,i):
-        while i * 2 > self.size:
+        if i * 2 > self.size:
             return i * 2 
         else:
             if self.heapList[i * 2] < [i * 2 +1 ] :
@@ -77,8 +77,15 @@ class priorityHeap:
         self.heapList[1]=self.heapList[self.size]
         self.size -=self.size
         self.percDown(1)
-        return retval                   
-                                  
+        return retval 
+                            
+    def buildPriorityHeap(self, alist):
+        i=len(alist)//2
+        self.size=len(alist)
+        self.heapList=[0] + alist[:]
+        while i > 0 : 
+            self.percDown(i)
+            i -=1                                  
                                          
 ## Node and reference style
 class BinarySearchTree:
