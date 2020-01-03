@@ -32,9 +32,56 @@ class BinaryTree:
 
     def getRightChild(root):
         return root[2]
-
+                            
+## min priority heap 
+class priorityHeap:
+    
+    def __init__(self):
+        self.heapList=[0]
+        self.size=0
+        
+    def percUp(self,i):
+        while i//2 : 
+            if self.heapList[i//2] < self.heapList[i]:
+                temp=self.heapList[i//2]
+                self.heapList[i//2]= self.heapList[i]
+                self.heapList[i]=temp 
+        i//=2
+      
+    def percDown(self,i):
+        while i * 2 <= self.size:
+            mc=self.getMinKey(i)
+            if self.heapList[i] > self.heapList[mc]:
+                temp=self.heapList[i] 
+                self.heapList[i]= self.heapList[mc]
+                self.heapList[mc]=temp
+            i=mc 
+            
+    def getMinKey(self,i):
+        while i * 2 > self.size:
+            return i * 2 
+        else:
+            if self.heapList[i * 2] < [i * 2 +1 ] :
+                return i * 2
+            else:
+                return i*2 +1 
+         
+            
+    def insertChild(self,item):
+        self.heapList.append(item)
+        self.size += 1 
+        self.percUp(self.size)
+        
+    def deleteChild(self):
+        retval=self.heapList[1]
+        self.heapList[1]=self.heapList[self.size]
+        self.size -=self.size
+        self.percDown(1)
+        return retval                   
+                                  
+                                         
 ## Node and reference style
-class BinaryTree:
+class BinarySearchTree:
 
     def __init__(self, item):
         self.root = item
