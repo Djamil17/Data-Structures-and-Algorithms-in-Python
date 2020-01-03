@@ -9,25 +9,39 @@ Date: 07/11/2019
 """
 ## List of list style 
 
-def BinaryTree(r):
-    return [r, [], []]
+class BinaryTree:
+    def __init__(self, r):
+        self.root= [r, [], []]
 
-def insertLeft(root, newbranch):
-    temp=root.pop(1)
-    if len(temp) > 1 : 
-        root.insert(1, [newbrach, temp, [])
-    else:
-        root.insert(1, [newbrach, [], [])
-                        
-def insertRight(root, newbranch):
-    temp=root.pop(2)
-    if len(temp) > 1 : 
-        root.insert(2, [newbrach, temp, [])
-    else:
-        root.insert(2, [newbrach, [], [])
 
+    def insertLeft(root, newbranch):
+        temp=root.pop(1)
+        if len(temp) > 1 : 
+            root.insert(1, [newbrach, temp, [])
+        else:
+            root.insert(1, [newbrach, [], [])
+
+    def insertRight(root, newbranch):
+        temp=root.pop(2)
+        if len(temp) > 1 : 
+            root.insert(2, [newbrach, temp, [])
+        else:
+            root.insert(2, [newbrach, [], [])
+
+    def getRootNode(self):
+        return self.root[0]
+
+    def getLeftChild(root):
+        return root[1]
+
+    def getRightChild(root):
+        return root[2]
 
 ## Node and reference style
+
+                            
+                        
+                        
 class Node:
 
     def __init__(self, data):
@@ -93,10 +107,10 @@ class BinaryTree:
 
 
 ## Count edges to target
-if __name__=='main()': 
-main():
+if __name__=='__main__': 
+a=BinaryTree(1); a.insertLeft(2)
+a.insertLeft(4) ; a.insertLeft(2)
+a.insertLeft(3); a.insertRight(3); a.insertRight(5); a.insertRight(6)                            
 b=BinaryTree()
-b.add(2)
-b.add(3)
-b.add(5)
+b.add(2); b.add(3) b.add(5)
 b.PrintTree()
