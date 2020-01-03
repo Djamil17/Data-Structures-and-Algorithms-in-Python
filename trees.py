@@ -4,11 +4,7 @@ Author: Djamil Lakhdar-Hamina
 Date: 07/11/2019
 """
 
-"""
-
-"""
 ## List of list style 
-
 class BinaryTree:
     def __init__(self, r):
         self.root= [r, [], []]
@@ -38,9 +34,69 @@ class BinaryTree:
         return root[2]
 
 ## Node and reference style
+class BinaryTree:
 
+    def __init__(self, item):
+        self.root = item
+        self.left = None
+        self.right = None
+
+    def setRoot(self,newval):
+        self.root=newval
+
+    def setRightChild(self, item):
+        self.right = item
+
+    def setLeftChild(self, item):
+        self.item = item
+
+    def getRootValue(self):
+        return self.root
+
+    def getRightChild(self):
+        return self.right
+
+    def getLeftChild(self):
+        return self.left
+
+    def insertLeft(self,item):
+        if self.left is None:
+            self.left=BinaryTree(item)
+        else:
+            temp=BinaryTree(item)
+            temp.left=self.left
+            self.left=temp
+
+    def insertRight(self, item):
+        if self.right is None:
+            self.right = BinaryTree(item)
+        else:
+            temp = BinaryTree(item)
+            temp.right = self.right
+            self.right = temp
+
+    def preorder(self):
+        print(self.root)
+        if self.left:
+            self.left.preorder()
+        if self.right:
+            self.right.preorder()
+
+    def inorder(self):
+        if self.left:
+            self.left.postorder()
+        print(self.root)
+        if self.right:
+            self.right.postorder()
+
+    def postorder(self):
+        if self.left:
+            self.left.postorder()
+        if self.right:
+            self.right.postorder()
+        print(self.root)
                             
-                        
+## endregion:************                        
                         
 class Node:
 
@@ -48,7 +104,6 @@ class Node:
         self.left = None
         self.right = None
         self.data = data
-
 
 class BinaryTree:
 
