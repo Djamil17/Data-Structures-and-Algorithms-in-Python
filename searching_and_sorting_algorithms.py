@@ -22,17 +22,18 @@ def seqScan(alist, item):
 def binarySearch(alist, item):
     found=False
     first=0
-    last=len(alist -1) 
-    while first <= last and not Found:
+    last=len(alist)-1
+    while first <= last and not found:
         mid=(first+last)//2
-        if alist[mid] == item
+        if alist[mid] == item:
             found=True
         else :
-            if item > alist[mid]:
+            if item < alist[mid]:
                 last=mid-1
-            else: 
+            else:
                 first=mid+1
-     return found 
+
+    return found
 
 def binarySearch(alist, item):
     found=False
