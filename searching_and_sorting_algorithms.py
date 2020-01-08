@@ -41,9 +41,9 @@ def binarySearch(alist, item):
     if midpoint == item:
         found=True
     else:
-        if midpoint > item :
+        if alist[midpoint] > item :
             binarySearch(alist[:midpoint],item)
-        else midpoint < item: 
+        else: 
             binarySearch(alist[midpoint+1:],item)
     return found 
 
