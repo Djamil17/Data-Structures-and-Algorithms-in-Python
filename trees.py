@@ -5,7 +5,6 @@ Date: 07/11/2019
 """
 
 ## List of list style 
-
 class BinaryTree:
     def __init__(self, r):
         self.root= [r, [], []]
@@ -35,8 +34,54 @@ class BinaryTree:
         return self.root[2]
 
     def __str__(self):
-       return self.root.__str__()                          
-                                         
+       return self.root.__str__()     
+
+## region : always 0 at front 
+
+class BinHeap:
+    def __init__(self):
+        self.heapList = [0]
+        self.currentSize = 0
+
+    def percUp(self,i):
+        while i //2 >0:
+            if self.heapList[i] < self.heapList[i//2]:
+                temp=self.heapList[i]
+                self.heapList[i] = self.heapList[i//2]
+                self.heapList[i // 2]= temp
+        i//=2
+
+    def insert(self, k):
+        self.heapList.append(k)
+        self.current_size= self.current_size + 1
+        self.percUp(self.current_size)
+
+    def percDown(self,i):
+       while i * 2 <= self.current_size:
+           mc=self.minChild(i)
+           if self.heapList[i] > self.heapList[mc]:
+               temp=self.heapList[i]
+               self.heapList[i]=self.heapList[mc]
+               self.heapList[mc]=temp
+           i=mc
+    
+    def delChild(self):
+        retval=self.heapList[1]
+        self.heapList[1]=self.heapList
+        self.heapList.pop(1)
+        self.percDown(1)
+        return retval 
+    
+    def minChild(self,i):
+        if i * 2 + 1 > self.current_size:
+            return  i * 2
+        else:
+            if self.heapList[i*2] < self.heapList[i*2 +1]:
+                return self.heapList[i*2]
+            else: 
+                return self.heapList[i*2 +1] 
+
+## endregion : ****************
 ## Node and reference style
 class BinarySearchTree:
 
@@ -163,7 +208,6 @@ class BinaryTree:
             self._PrintTree(node.left)
             print(str(node.data))
             self._PrintTree(node.right)
-
             
 ## main 
 def main():
