@@ -5,87 +5,37 @@ Date: 07/11/2019
 """
 
 ## List of list style 
+
 class BinaryTree:
     def __init__(self, r):
         self.root= [r, [], []]
 
 
-    def insertLeft(root, newbranch):
-        temp=root.pop(1)
-        if len(temp) > 1 : 
-            root.insert(1, [newbrach, temp, [])
+    def insertLeft(self, newbranch):
+        temp=self.root.pop(1)
+        if len(temp) > 1 :
+            self.root.insert(1, [newbranch, temp, []])
         else:
-            root.insert(1, [newbrach, [], [])
+            self.root.insert(1, [newbranch, [], []])
 
-    def insertRight(root, newbranch):
-        temp=root.pop(2)
-        if len(temp) > 1 : 
-            root.insert(2, [newbrach, temp, [])
+    def insertRight(self, newbranch):
+        temp=self.root.pop(2)
+        if len(temp) > 1 :
+            self.root.insert(2, [newbranch, temp, []])
         else:
-            root.insert(2, [newbrach, [], [])
+            self.root.insert(2, [newbranch, [], []])
 
     def getRootNode(self):
         return self.root[0]
 
-    def getLeftChild(root):
-        return root[1]
+    def getLeftChild(self):
+        return self.root[1]
 
-    def getRightChild(root):
-        return root[2]
-                            
-## min priority heap 
-class priorityHeap:
-    
-    def __init__(self):
-        self.heapList=[0]
-        self.size=0
-        
-    def percUp(self,i):
-        while i//2 : 
-            if self.heapList[i//2] < self.heapList[i]:
-                temp=self.heapList[i//2]
-                self.heapList[i//2]= self.heapList[i]
-                self.heapList[i]=temp 
-        i//=2
-      
-    def percDown(self,i):
-        while i * 2 <= self.size:
-            mc=self.getMinKey(i)
-            if self.heapList[i] > self.heapList[mc]:
-                temp=self.heapList[i] 
-                self.heapList[i]= self.heapList[mc]
-                self.heapList[mc]=temp
-            i=mc 
-            
-    def getMinKey(self,i):
-        if i * 2 > self.size:
-            return i * 2 
-        else:
-            if self.heapList[i * 2] < [i * 2 +1 ] :
-                return i * 2
-            else:
-                return i*2 +1 
-         
-            
-    def insertChild(self,item):
-        self.heapList.append(item)
-        self.size += 1 
-        self.percUp(self.size)
-        
-    def deleteChild(self):
-        retval=self.heapList[1]
-        self.heapList[1]=self.heapList[self.size]
-        self.size -=self.size
-        self.percDown(1)
-        return retval 
-                            
-    def buildPriorityHeap(self, alist):
-        i=len(alist)//2
-        self.size=len(alist)
-        self.heapList=[0] + alist[:]
-        while i > 0 : 
-            self.percDown(i)
-            i -=1                                  
+    def getRightChild(self):
+        return self.root[2]
+
+    def __str__(self):
+       return self.root.__str__()                          
                                          
 ## Node and reference style
 class BinarySearchTree:
@@ -214,12 +164,10 @@ class BinaryTree:
             print(str(node.data))
             self._PrintTree(node.right)
 
-
+            
+## main 
+def main():
+    
 ## Count edges to target
 if __name__=='__main__': 
-a=BinaryTree(1); a.insertLeft(2)
-a.insertLeft(4) ; a.insertLeft(2)
-a.insertLeft(3); a.insertRight(3); a.insertRight(5); a.insertRight(6)                            
-b=BinaryTree()
-b.add(2); b.add(3) b.add(5)
-b.PrintTree()
+   main()
