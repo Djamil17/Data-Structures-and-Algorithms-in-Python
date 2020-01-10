@@ -10,6 +10,8 @@ Contents:
 3. Queue, description, implentation 
 4. Linked list, description ,implentation 
 5. Doubly linked List, description ,implentation 
+6. Circular Linked List
+7. Sparse Matrix Conversion using Linked List 
 """
 
 
@@ -239,6 +241,62 @@ class doublelinkedList(dNode):
         else:
             previous.setNext(current.getNext())
             previous.setPrevious(current.getPrevious())
+            
+class CircularList:
+     def __init__(self, initdata,initdata2):
+          n = Node()
+          n.setData(initdata)
+          self.head = n
+          n2= Node()
+          n2.setData(initdata2)
+          self.tail=n2 
+          self.head.setNext(self.tail)
+          self.tail.setNext(self.head)
+
+     def add(self, item):
+          a = Node()
+          a.setData(item)
+          temp = a
+          temp.setNext(self.head)
+          self.head = temp
+
+     def length(self):
+          current = self.head
+          count = 0
+          while current is not None:
+               current = current.getNext()
+               count = count + 1
+          return count
+
+     def search(self, item):
+          current = self.head
+          found = False
+          while current.getData() != item and not found:
+               if current == item:
+                    found = True
+               else:
+                    current = current.getNext()
+          return current, found
+
+     def remove(self, item):
+          current = self.head
+          previous = None
+          found = False
+          while current is not None and not found:
+               if current.getData() == item:
+                    found = True
+               else:
+                    previous = current
+                    current = current.getNext()
+
+          ## remove head
+          if previous is None:
+               self.head = current.getNext()
+          else:
+               previous.setNext(current.getNext())
+
+     def __repr__(self):
+          return f'{self.head}'
             
 ## region: dna 
 ## We will use two linked lists to represent 
