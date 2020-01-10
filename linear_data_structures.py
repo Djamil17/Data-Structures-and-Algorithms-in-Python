@@ -49,7 +49,7 @@ class Queue():
    def dequeue(self):
       self.items.pop()
       
-   def size(self)
+   def size(self):
       return len(self.items) 
 
 ## Dequeue:
@@ -67,10 +67,10 @@ class Queue():
     def removeFront(self):
        return self.items.pop()
        
-     def removeRear(self)
+     def removeRear(self):
        return self.items.pop(0)
   
-   def size(self)
+   def size(self):
       return len(self.items) 
    
 ## Linked List:
