@@ -25,3 +25,22 @@ Class Vertex:
   
   def __str__(self):
     return str(self.id) + 'is connected to:' + str(self.connectedTo.values.iters())
+
+ Class Graph:
+    def __init__(self): 
+      self.vertList={}
+      self.numVert=0 
+      
+    def addVertex(self,key):
+      self.numVert += 1 
+      newVert=Vertex(key)
+      self.vertList[key]= NewVert
+      return newVert
+    
+    def addEdge(self, f, t, cost=0): 
+      if f not in self.vertList:
+        nv=self.addVertex(f)
+      if t not in self.vertList:
+        nbv=self.addVertex(t) 
+      self.vertList[f].addNeighbor(self.vertList[t], cost)
+      
