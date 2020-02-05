@@ -219,16 +219,15 @@ class TreeNode:
     def __init__(self):
         self.root = None
         self.size = 0
-
+    
     def Length(self):
         return self.size
-
+    
     def __len__(self):
         return self.size
-
+    
     def __iter__(self):
         self.root.__iter__()
-
 
 class BinarySearchTree:
     def __init__(self, key, val, parent, left, right):
@@ -320,3 +319,78 @@ class BinarySearchTree:
             return True
         else:
             return False
+
+    def delete(self, key):
+        if self.size > 1:
+            res = self.get(key)
+            if res:
+                self.remove(res)
+                self.size -= 1
+            else:
+                raise KeyError("Key {} does not exist".format(key))
+        elif self.size == 1 and self.root.key == key:
+            self.root = None
+            self.size -= 1
+        else:
+            raise KeyError("Key {} does not exist".format(key))
+
+    def remove(currentnode):
+        if currentnode.isLeaf():
+            if currentnode.isRightchild():
+                currentnode.parent.leftchild = None
+            elif currentnode.isLeftchild():
+                currentnode.parent.rightchild = None
+        elif currentnode.hasBothChild():
+            suc=currentnode.sucessor()
+            suc.spliceOut(suc)
+            currentnode.key=suc.key
+            currentnode.payload=suc.key
+        elif currentnode.hasChild():
+            if currentnode.isLeftchild():
+                if currentnode.hasLeftChild():
+                    currentnode.parent.leftchild = currentnode.leftchild
+                    currentnode.leftchild.parent = currentnode.parent
+                elif currentnode.hasRightChild():
+                    currentnode.parent.rightchild = currentnode.rightchild
+                    currentnode.rightchild.parent = currentnode.parent
+            elif currentnode.isRightchild():
+                if currentnode.hasLeftChild():
+                    currentnode.parent.leftchild = currentnode.leftchild
+                    currentnode.leftchild.parent = currentnode.parent
+                elif currentnode.hasRightChild():
+                    currentnode.parent.rightchild = currentnode.rightchild
+                    currentnode.rightchild.parent = currentnode.parent
+            elif currentnode.isRoot():
+                if currentnode.hasLeftChild():
+                    currentnode.replaceNode(currentnode.leftchild.key,
+                                            currentnode.leftchild.payload,
+                                            lc=currentnode.leftchild.leftchild,
+                                            rc=currentnode.leftchild.rightchild)
+
+                else:
+                    currentnode.replaceNode(currentnode.leftchild.key,
+                                            currentnode.leftchild.payload,
+                                            lc=currentnode.rightchild.leftchild,
+                                            rc=currentnode.rightchild.rightchild)
+
+    def sucessor(currentnode):
+        suc=None
+        if suc.hasRightChild():
+            suc.findMin()
+            
+        return suc 
+
+    def findMin(currentnode):
+        current=currentnode
+        while currentnode.rightchild:
+            current= currentnode.leftchild
+        return current
+    
+    def spliceOut(currentnode):
+        # if currentnode.isLeaf():
+        # 
+        # elif currentnode.hasChild():
+        # 
+        
+    def __del__(self, key):
+        self.delete(key)
