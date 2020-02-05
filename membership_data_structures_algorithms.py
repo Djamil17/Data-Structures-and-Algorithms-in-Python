@@ -1,5 +1,5 @@
 """
-Script: membership_structures_algorithms.py
+Title: Membership Structures Algorithms
 Authors: Carlos Perez, Djamil Lakhdar-Hamina
 
 m= number of bits,  n= number of items, k= number of hash functions , p false positive probability 
@@ -22,7 +22,7 @@ class BloomFilter:
         self.bit_array = bitarr.bitarray(self.m)
         self.k = None
         self.p = None
-        self.size=self.m
+        self.size = self.m
 
     def countHashFunc(self):
         self.k = math.trunc(self.m / self.n * math.log(2))
@@ -34,7 +34,7 @@ class BloomFilter:
             return self.p
         else:
             self.countHashFunc()
-            self.p = (1 -( math.e ** -self.k * self.n / self.m)) ** self.k
+            self.p = (1 - (math.e ** -self.k * self.n / self.m)) ** self.k
             return self.p
 
     def add(self, item):
@@ -55,13 +55,15 @@ class BloomFilter:
     def __str__(self):
         return str(self.bit_array)
 
-def main():
-a=BloomFilter(3,87)
-print(a.countHashFunc())
-print(a.calcNegProb())
-print(a)
-a.add('jesus')
-print(a.check('jesus'))
 
-if __name__== '__main__':
+def main():
+    a = BloomFilter(3, 87)
+    print(a.countHashFunc())
+    print(a.calcNegProb())
+    print(a)
+    a.add('jesus')
+    print(a.check('jesus'))
+
+
+if __name__ == '__main__':
     main()

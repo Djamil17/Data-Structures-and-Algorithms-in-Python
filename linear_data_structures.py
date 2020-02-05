@@ -1,6 +1,6 @@
 
 """
-Script:Linear_Structures.py
+Title:Linear Structures
 Description: Description, explanation of Linear Structures 
 Author: Djamil Lakhdar-Hamina, Carlos Perez 
 

@@ -5,7 +5,6 @@ Author: Djamil Lakhdar-Hamina, Carlos Perez
 Contents: TODO  
 """
 
-
 import time 
 import numbers
 ## sequential search of list 
@@ -237,7 +236,5 @@ def partition(alist, first, last):
     return rightmark
    
 ##endregion: ***********
-   
-if __name__ == '__main__': 
 
 ## endregion 

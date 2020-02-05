@@ -4,22 +4,22 @@ Author: Djamil Lakhdar-Hamina
 Date: 07/11/2019
 """
 
-## List of list style 
+
+## List of list style
 class BinaryTree:
     def __init__(self, r):
-        self.root= [r, [], []]
-
+        self.root = [r, [], []]
 
     def insertLeft(self, newbranch):
-        temp=self.root.pop(1)
-        if len(temp) > 1 :
+        temp = self.root.pop(1)
+        if len(temp) > 1:
             self.root.insert(1, [newbranch, temp, []])
         else:
             self.root.insert(1, [newbranch, [], []])
 
     def insertRight(self, newbranch):
-        temp=self.root.pop(2)
-        if len(temp) > 1 :
+        temp = self.root.pop(2)
+        if len(temp) > 1:
             self.root.insert(2, [newbranch, temp, []])
         else:
             self.root.insert(2, [newbranch, [], []])
@@ -34,54 +34,57 @@ class BinaryTree:
         return self.root[2]
 
     def __str__(self):
-       return self.root.__str__()     
+        return self.root.__str__()
 
-## region : always 0 at front 
+    ## region : always 0 at front
+
 
 class BinHeap:
     def __init__(self):
         self.heapList = [0]
         self.currentSize = 0
 
-    def percUp(self,i):
-        while i //2 >0:
-            if self.heapList[i] < self.heapList[i//2]:
-                temp=self.heapList[i]
-                self.heapList[i] = self.heapList[i//2]
-                self.heapList[i // 2]= temp
-        i//=2
+    def percUp(self, i):
+        while i // 2 > 0:
+            if self.heapList[i] < self.heapList[i // 2]:
+                temp = self.heapList[i]
+                self.heapList[i] = self.heapList[i // 2]
+                self.heapList[i // 2] = temp
+        i //= 2
 
     def insert(self, k):
         self.heapList.append(k)
-        self.current_size= self.current_size + 1
+        self.current_size = self.current_size + 1
         self.percUp(self.current_size)
 
-    def percDown(self,i):
-       while i * 2 <= self.current_size:
-           mc=self.minChild(i)
-           if self.heapList[i] > self.heapList[mc]:
-               temp=self.heapList[i]
-               self.heapList[i]=self.heapList[mc]
-               self.heapList[mc]=temp
-           i=mc
-    
+    def percDown(self, i):
+        while i * 2 <= self.current_size:
+            mc = self.minChild(i)
+            if self.heapList[i] > self.heapList[mc]:
+                temp = self.heapList[i]
+                self.heapList[i] = self.heapList[mc]
+                self.heapList[mc] = temp
+            i = mc
+
     def delChild(self):
-        retval=self.heapList[1]
-        self.heapList[1]=self.heapList
+        retval = self.heapList[1]
+        self.heapList[1] = self.heapList
         self.heapList.pop(1)
         self.percDown(1)
-        return retval 
-    
-    def minChild(self,i):
-        if i * 2 + 1 > self.current_size:
-            return  i * 2
-        else:
-            if self.heapList[i*2] < self.heapList[i*2 +1]:
-                return self.heapList[i*2]
-            else: 
-                return self.heapList[i*2 +1] 
+        return retval
 
-## endregion : ****************
+    def minChild(self, i):
+        if i * 2 + 1 > self.current_size:
+            return i * 2
+        else:
+            if self.heapList[i * 2] < self.heapList[i * 2 + 1]:
+                return self.heapList[i * 2]
+            else:
+                return self.heapList[i * 2 + 1]
+
+            ## endregion : ****************
+
+
 ## Node and reference style
 class BinarySearchTree:
 
@@ -90,8 +93,8 @@ class BinarySearchTree:
         self.left = None
         self.right = None
 
-    def setRoot(self,newval):
-        self.root=newval
+    def setRoot(self, newval):
+        self.root = newval
 
     def setRightChild(self, item):
         self.right = item
@@ -108,13 +111,13 @@ class BinarySearchTree:
     def getLeftChild(self):
         return self.left
 
-    def insertLeft(self,item):
+    def insertLeft(self, item):
         if self.left is None:
-            self.left=BinaryTree(item)
+            self.left = BinaryTree(item)
         else:
-            temp=BinaryTree(item)
-            temp.left=self.left
-            self.left=temp
+            temp = BinaryTree(item)
+            temp.left = self.left
+            self.left = temp
 
     def insertRight(self, item):
         if self.right is None:
@@ -144,9 +147,10 @@ class BinarySearchTree:
         if self.right:
             self.right.postorder()
         print(self.root)
-                            
+
+
 ## endregion:************                        
-                        
+
 class Node:
 
     def __init__(self, data):
@@ -154,51 +158,52 @@ class Node:
         self.right = None
         self.data = data
 
+
 class BinaryTree:
 
     def __init__(self):
-        self.root=None
+        self.root = None
 
-    def add(self,item):
+    def add(self, item):
         if self.root is None:
-            self.root=Node(item)
+            self.root = Node(item)
         else:
-            self._add(item,self.root)
+            self._add(item, self.root)
 
     def _add(self, val, node):
         if node.data < val:
             if node.left is None:
-                node.left=Node(val)
+                node.left = Node(val)
             else:
                 self._add(val, node.left)
         elif node.data > val:
             if node.right is None:
-                node.right=Node(val)
+                node.right = Node(val)
             else:
-                self._add(val,node.left)
+                self._add(val, node.left)
 
-    def find(self,item):
+    def find(self, item):
         if self.root is None:
             return None
         else:
             return self._find(item, self.root)
 
-    def _find(self,val ,node):
+    def _find(self, val, node):
         if node.data == val:
             return val
         elif node.data < val:
-            if node.left==val :
+            if node.left == val:
                 return val
             else:
                 self._find(val, node.left)
         elif node.data > val:
-            if node.right==val:
+            if node.right == val:
                 return val
             else:
-                self._find(val,node.right)
+                self._find(val, node.right)
 
         return val
-    
+
     def PrintTree(self):
         if self.root is not None:
             self._PrintTree(self.root)
@@ -208,10 +213,110 @@ class BinaryTree:
             self._PrintTree(node.left)
             print(str(node.data))
             self._PrintTree(node.right)
-            
-## main 
-def main():
-    
-## Count edges to target
-if __name__=='__main__': 
-   main()
+
+
+class TreeNode:
+    def __init__(self):
+        self.root = None
+        self.size = 0
+
+    def Length(self):
+        return self.size
+
+    def __len__(self):
+        return self.size
+
+    def __iter__(self):
+        self.root.__iter__()
+
+
+class BinarySearchTree:
+    def __init__(self, key, val, parent, left, right):
+        self.key = key
+        self.payload = val
+        self.parent = parent
+        self.leftchild = left
+        self.rightchild = right
+
+    def hasRightChild(self):
+        return self.rightchild
+
+    def hasLeftChild(self):
+        return self.leftchild
+
+    def isLeftchild(self):
+        return self.parent.leftchild == self
+
+    def isRightchild(self):
+        return self.parent.rightchild == self
+
+    def hasChild(self):
+        return self.leftchild or self.rightchild
+
+    def hasBothChild(self):
+        return self.leftchild and self.rightchild
+
+    def isRoot(self):
+        return not self.parent
+
+    def isLeaf(self):
+        return not (self.rightchild or self.leftchild)
+
+    def replaceNode(self, key, payload, lc, rc):
+        self.key = key
+        self.payload = payload
+        self.rightchild = rc
+        self.leftchild = lc
+        if self.hasLeftChild():
+            self.leftchild.parent = self
+        if self.hasRightChild():
+            self.rightchild.parent = self
+
+    def add(self, key, payload):
+        if self.root:
+            self._add(key, payload, self.root)
+        else:
+            self.root = BinarySearchTree(key, payload)
+
+        self.size += 1
+
+    def _add(self, key, val, node):
+        if key < node.key:
+            if node.hasLeftChild():
+                self._add(key, val, node.leftchild)
+            else:
+                node.leftchild = BinarySearchTree(key, val, parent=node)
+        else:
+            if node.hasrightChild():
+                self.add(key, val)
+            else:
+                node.rightchild = BinarySearchTree(key, val, parent=node)
+
+    def get(self, key):
+        if self.root:
+            res = self._get(self.root, key)
+            return res.payload
+        else:
+            return None
+
+    def _get(self, currentnode, key):
+        if currentnode.key == key:
+            return key
+        elif currentnode.key > key:
+            return self._get(currentnode.rightchild, key)
+        elif currentnode.key < key:
+            return self._get(currentnode.rightchild, key)
+        else:
+            return None
+
+    def __setitem__(self, key, value):
+        self.add(key, value)
+
+    def __getitem__(self, item):
+        return self.get(item)
+
+    def __contains__(self, item):
+        if self.get(item):
+            return True
+        else:
+            return False

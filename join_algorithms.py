@@ -1,5 +1,5 @@
 """
-Script:join_algorithms.py
+Title:Join Algorithms
 Description: Description, explanation of join algorithms, 
 especially as applies to tables, or relations 
 Author: Djamil Lakhdar-Hamina, Carlos Perez 
