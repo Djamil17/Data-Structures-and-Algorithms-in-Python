@@ -1,5 +1,5 @@
 """
-Title: Binary Tree
+Title: Tree Data-Structure 
 Author: Djamil Lakhdar-Hamina
 Date: 07/11/2019
 """
@@ -388,18 +388,23 @@ class BinarySearchTree:
     def spliceOut(currentnode):
         if currentnode.isLeaf():
             if currentnode.isLeftChild():
-                currentnode=None
                 currentnode.parent.leftchild=None
             else: 
-                currentnode=None
                 currentnode.parent.rightchild=None
         elif currentnode.hasChild():
-           if currentnode.isLeftChild():
-                currentnode=None
-                currentnode.parent.leftchild=None
-            else: 
-                currentnode=None
-                currentnode.parent.rightchild=None
-        
+           if currentnode.hasLeftChild():
+              if currentnode.isLeftChild():
+                 currentnode.parent.leftchild=None
+              else: 
+                 currentnode.parent.rightchild=None
+                 currentnode.rightchild.parent=currentnode.parent
+           else:
+              if currentnode.hasRightChild():
+                 if currentnode.isLeftChild():
+                    currentnode.parent.rightchild=None
+               else:
+                 currentnode.parent.rightchild=None
+                 currentnode.leftchild.parent=currentnode.parent
+                
     def __del__(self, key):
         self.delete(key)
