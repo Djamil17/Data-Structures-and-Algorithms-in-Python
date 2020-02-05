@@ -394,17 +394,17 @@ class BinarySearchTree:
         elif currentnode.hasChild():
            if currentnode.hasLeftChild():
               if currentnode.isLeftChild():
-                 currentnode.parent.leftchild=None
+                 currentnode.parent.leftchild=currentnode.leftchild 
               else: 
-                 currentnode.parent.rightchild=None
+                 currentnode.parent.rightchild=currentnode.leftchild 
                  currentnode.rightchild.parent=currentnode.parent
            else:
               if currentnode.hasRightChild():
                  if currentnode.isLeftChild():
-                    currentnode.parent.rightchild=None
-               else:
-                 currentnode.parent.rightchild=None
-                 currentnode.leftchild.parent=currentnode.parent
+                    currentnode.parent.leftchild=currentnode.rightchild
+                 else:
+                    currentnode.parent.rightchild=currentnode.rightchild 
+                    currentnode.rightchild.parent=currentnode.parent
                 
     def __del__(self, key):
         self.delete(key)
