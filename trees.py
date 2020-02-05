@@ -301,7 +301,7 @@ class BinarySearchTree:
 
     def _get(self, currentnode, key):
         if currentnode.key == key:
-            return key
+            return currentnode
         elif currentnode.key > key:
             return self._get(currentnode.rightchild, key)
         elif currentnode.key < key:
