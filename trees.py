@@ -376,21 +376,30 @@ class BinarySearchTree:
     def sucessor(currentnode):
         suc=None
         if suc.hasRightChild():
-            suc.findMin()
-            
+            suc.rightchild.findMin()
         return suc 
 
     def findMin(currentnode):
         current=currentnode
-        while currentnode.rightchild:
+        while currentnode.hasLeftchild():
             current= currentnode.leftchild
         return current
     
     def spliceOut(currentnode):
-        # if currentnode.isLeaf():
-        # 
-        # elif currentnode.hasChild():
-        # 
+        if currentnode.isLeaf():
+            if currentnode.isLeftChild():
+                currentnode=None
+                currentnode.parent.leftchild=None
+            else: 
+                currentnode=None
+                currentnode.parent.rightchild=None
+        elif currentnode.hasChild():
+           if currentnode.isLeftChild():
+                currentnode=None
+                currentnode.parent.leftchild=None
+            else: 
+                currentnode=None
+                currentnode.parent.rightchild=None
         
     def __del__(self, key):
         self.delete(key)
