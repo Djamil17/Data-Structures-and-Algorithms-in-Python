@@ -320,6 +320,16 @@ class BinarySearchTree:
         else:
             return False
 
+    def __iter__(self):
+        if self:
+            if self.hasLeftChild():
+                for elem in self.leftchild():
+                    yield elem
+            yield self.key
+            if self.hasRightChild():
+                for elem in self.rightchild():
+                    yield elem
+
     def delete(self, key):
         if self.size > 1:
             res = self.get(key)
