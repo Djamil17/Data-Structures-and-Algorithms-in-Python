@@ -418,3 +418,7 @@ class BinarySearchTree:
                 
     def __del__(self, key):
         self.delete(key)
+
+
+a=BinaryTree()
+a.add(1,'d')

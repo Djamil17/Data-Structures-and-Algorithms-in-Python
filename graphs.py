@@ -32,12 +32,20 @@ class Graph:
         self.vertList[key] = newVert
         return newVert
 
-    def addEdge(self, f, t, cost=0):
+    def addAsymetricEdge(self, f, t, cost=0):
         if f not in self.vertList:
             self.addVertex(f)
         if t not in self.vertList:
             self.addVertex(t)
         self.vertList[f].addNeighbor(self.vertList[t], cost)
+
+    def addSymetricEdge(self, f, t, cost=0):
+        if f not in self.vertList:
+            self.addVertex(f)
+        if t not in self.vertList:
+            self.addVertex(t)
+        self.vertList[f].addNeighbor(self.vertList[t], cost)
+        self.vertList[t].addNeighbor(self.vertList[f], cost)
 
     def getVert(self, key):
         if key in self.vertList:
