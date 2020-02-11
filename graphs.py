@@ -93,14 +93,14 @@ def bfs( ):
     start.setDistance(0)
     VertQueue.enqueue(start)
     while VertQueue.size() > 0 :
-        currentNode=VertQueue.dequeue()
+        currentVert=VertQueue.dequeue()
         for nbr in start.isconnectedTo():
             if nbr.getColor()== 'white':
                 nbr.setColor('grey')
-                nbr.setDistance(currentNode.getDistance() + 1)
+                nbr.setDistance(currentVert.getDistance() + 1)
                 VertQueue.enqueue(nbr)
-                currentNode.setPred(nbr)
-        currentNode.setColor('black')
+                nbr.setPred(currentVert)
+        currentVert.setColor('black')
 
 
 
