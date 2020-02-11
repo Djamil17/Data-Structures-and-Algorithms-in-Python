@@ -29,7 +29,7 @@ class Vertex:
         self.isconnectedTo[nbr]=weight
 
     def isConnectedto(self):
-        return self.isconnectedTo
+        return self.isconnectedTo.keys()
 
     def getPred(self):
         return self.Pred
@@ -101,7 +101,6 @@ def bfs( ):
                 VertQueue.enqueue(nbr)
                 nbr.setPred(currentVert)
         currentVert.setColor('black')
-
 
 
 
