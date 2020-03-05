@@ -4,7 +4,7 @@ Author: Djamil Lakhdar-Hamina
 Date: 02/05/2020
 """
 
-from linear_data_structures import Queue
+from linear_data_structures import Queue, Stack
 
 
 ## Adjacency Matrix for Fully Connected and "Small" Graph using nested list as representation
@@ -129,6 +129,19 @@ def bfs(entry):
         currentNode.setColor('black')
 
 
+def dfs(entry):
+    start = Graph().vertList['{}'.format(entry)]
+    start.visited=False
+    VertStack=Stack()
+    VertStack.push(start)
+    while VertStack.size() > 0:
+        v=VertStack.pop()
+        VertStack.pop()
+        start.visited=True
+        for nbr in v.isconnectedTo():
+            if nbr.visited == False:
+                VertStack.push(nbr)
+                nbr.visited=True
 
 
 if __name__ == '__main__':

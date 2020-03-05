@@ -39,7 +39,7 @@ class BinaryTree:
     ## region : always 0 at front
 
 
-class BinHeap:
+class PriorityQueue:
     def __init__(self):
         self.heapList = [0]
         self.currentSize = 0
@@ -47,18 +47,18 @@ class BinHeap:
     def percUp(self, i):
         while i // 2 > 0:
             if self.heapList[i] < self.heapList[i // 2]:
-                temp = self.heapList[i]
-                self.heapList[i] = self.heapList[i // 2]
-                self.heapList[i // 2] = temp
-        i //= 2
+                temp = self.heapList[i//2]
+                self.heapList[i // 2]= self.heapList[i]
+                self.heapList[i] = temp
+            i //= 2
 
     def insert(self, k):
         self.heapList.append(k)
-        self.current_size = self.current_size + 1
-        self.percUp(self.current_size)
+        self.currentSize = self.currentSize + 1
+        self.percUp(self.currentSize)
 
     def percDown(self, i):
-        while i * 2 <= self.current_size:
+        while (i * 2) <= self.currentSize:
             mc = self.minChild(i)
             if self.heapList[i] > self.heapList[mc]:
                 temp = self.heapList[i]
@@ -68,20 +68,31 @@ class BinHeap:
 
     def delChild(self):
         retval = self.heapList[1]
-        self.heapList[1] = self.heapList
+        self.heapList[1] = self.heapList[self.currentSize]
+        self.currentSize = - 1
         self.heapList.pop(1)
         self.percDown(1)
         return retval
 
     def minChild(self, i):
-        if i * 2 + 1 > self.current_size:
+        if i * 2 + 1 > self.currentSize:
             return i * 2
         else:
             if self.heapList[i * 2] < self.heapList[i * 2 + 1]:
-                return self.heapList[i * 2]
+                return i * 2
             else:
-                return self.heapList[i * 2 + 1]
+                return i * 2 + 1
 
+    def buildHeap(self,list):
+        i=len(list)//2
+        self.currentSize=len(list)
+        self.heapList= [0] + list[:]
+        while i > 0:
+            self.percDown(i)
+            i=i-1
+
+    def __str__(self):
+        return str(self.heapList)
             ## endregion : ****************
 
 
@@ -419,6 +430,8 @@ class BinarySearchTree:
     def __del__(self, key):
         self.delete(key)
 
-
-a=BinaryTree()
-a.add(1,'d')
+if __name__ == '__main__':
+    foo=PriorityQueue()
+    list=[5,6,7,8,89,4,42,34,234]
+    foo.buildHeap(list)
+    print(foo)
