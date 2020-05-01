@@ -20,39 +20,40 @@ Contents:
 ## A stack is an adt which follows LIFO and supports the following methods 
 ## 1. push 2.pop 3. peek 4. size
 
+
 class Stack():
    def __init__(self):
       self.items=[]
-  
+
    def push(self,item):
       self.items.append(item)
-    
+
    def pop(self):
       self.items.pop()
-      
+
    def peek(self):
      return self.items[-1]
-     
+
    def size(self):
       return len(self.items)
-   
+
 ## Queue:
 
-## A queue is an adt which follows FIFO and supports the following methods 
+## A queue is an adt which follows FIFO and supports the following methods
 ## 1. enqueue 2. dequeu 3. size
 
 class Queue():
    def __init__(self):
       self.items=[]
-      
+
    def enqueue(self, item):
       self.items.insert(0,item)
-      
+
    def dequeue(self):
       self.items.pop()
-      
+
    def size(self):
-      return len(self.items) 
+      return len(self.items)
 
 ## Dequeue:
 
@@ -61,20 +62,20 @@ class Queue():
       self.items=[]
 
     def addFront(self):
-      self.items.append(item) 
-   
+      self.items.append(item)
+
     def addRear(self, item):
-      self.items.insert(0, item) 
-    
+      self.items.insert(0, item)
+
     def removeFront(self):
        return self.items.pop()
-       
+
      def removeRear(self):
        return self.items.pop(0)
-  
+
    def size(self):
-      return len(self.items) 
-   
+      return len(self.items)
+
 ## Linked List:
 class Node:
     def __init__(self):
@@ -92,10 +93,10 @@ class Node:
 
     def setNext(self, newnext):
         self.next=newnext
-         
+
     def __repr__(self):
-        return f'{self.data},{self.next}'  
-      
+        return f'{self.data},{self.next}'
+
 class List:
     def __init__(self,initdata):
         n=Node()
@@ -143,11 +144,11 @@ class List:
             self.head = current.getNext()
         else:
             previous.setNext(current.getNext())
-     
+
      def __repr__(self):
         return f'{self.head}'
 
-  ## doubly linked list 
+  ## doubly linked list
 
 class Node(object):
 
@@ -173,75 +174,75 @@ self.head.prev = new_object
 
 self.head = new_object
 
-class dNode: 
+class dNode:
     def __init__(self, initdata):
-        self.data=initdata 
+        self.data=initdata
         self.next=None
         self.previous=None
 
     def getData(self):
         return self.data
-    
+
     def getNext(self):
         return self.next
-   
+
     def getPrevious(self)
         return self.previous
-   
+
     def setData(self,newdata):
-        return self.initdata=newdata 
-   
+        return self.initdata=newdata
+
     def setNext(self,newnext):
-        return self.next=newnext 
-   
+        return self.next=newnext
+
     def setPrevious(self, newprev):
-        return self.previous=newprev 
-   
+        return self.previous=newprev
+
 class doublelinkedList(dNode):
       def __init__(self):
         self.head=None
-    
+
       def add(self,item):
         temp=Node(item)
         temp.setNext(self.head)
-        self.head=temp 
-    
+        self.head=temp
+
       def length(self):
         current=self.head
         count=0
-        while current != None: 
+        while current != None:
             current=current.getNext()
             count+=1
 
       def search(self, item):
         current=self.head
         found=False
-        while current != item and not found:   
+        while current != item and not found:
             if current.getNext() == item:
                 found=True
             else:
                 current= current.getNext()
 
-        return current, found  
+        return current, found
 
     def remove(self, item):
         current=self.head
         previous= current.getPrevious()
         found= False
-        while current != None and not found: 
+        while current != None and not found:
             if current.getNext()==item:
                 found=True
-            else: 
+            else:
                 previous=current
                 current=current.getNext()
 
-        ## remove head 
+        ## remove head
         if previous == None:
             self.head=current.getNext()
         else:
             previous.setNext(current.getNext())
             previous.setPrevious(current.getPrevious())
-            
+
 class CircularList:
      def __init__(self, initdata,initdata2):
           n = Node()
@@ -249,7 +250,7 @@ class CircularList:
           self.head = n
           n2= Node()
           n2.setData(initdata2)
-          self.tail=n2 
+          self.tail=n2
           self.head.setNext(self.tail)
           self.tail.setNext(self.head)
 
@@ -297,10 +298,10 @@ class CircularList:
 
      def __repr__(self):
           return f'{self.head}'
-            
-## region: dna 
-## We will use two linked lists to represent 
-## TODO: Just use a node for a single pair, no extra pair Node 
+
+## region: dna
+## We will use two linked lists to represent
+## TODO: Just use a node for a single pair, no extra pair Node
 
 class NucleoTide:
     nucleobase_kind = ['A', 'T', 'C', 'G']
@@ -374,7 +375,7 @@ class DNA(NucleoTide):
             self.pair=pair_base
 
             counter += 1
-## endregion 
+## endregion
 
 ## region: using linked list for sparse matrix : https://www.geeksforgeeks.org/sparse-matrix-representation/
 class compactMatrixNode:
@@ -446,12 +447,11 @@ def convertSparsetoCompact(nested_list):
             if nested_list[row][column] != 0:
                 print('Storing {} in row {} and column {}'.format(nested_list[row][column], row, column))
                 compactMatrix.add(nested_list[row][column], row, column)
-                  
+
     return compactMatrix
 
 ##endregion:**************
                    
 ## region: 
-if __name__ == '__main__': 
-   main():
-## endregion                  
+if __name__ == '__main__':
+## endregion
