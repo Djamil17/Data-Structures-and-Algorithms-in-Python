@@ -1,7 +1,5 @@
-import time
-import math
-
 from decimal import *
+
 getcontext().prec = 6
 
 
@@ -81,9 +79,6 @@ def pw_multiplication(amatrix, another):
     return C
 
 
-C = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
-
-
 def pw_division(amatrix, another):
     nrow = len(amatrix)
     ncol = len(amatrix[0])
@@ -93,48 +88,36 @@ def pw_division(amatrix, another):
         for j in range(ncol):
             C[i][j] = amatrix[i][j] / another[i][j]
 
-
     return C
 
 
-print(C)
-
 ## vector operations
 
-def vector_scal_addition(scalar, avector) : return  [scalar * i for i in avector]
-
-# print(x)
-
-x = [1, 2, 3, 4, 5, 6]
-y = [-1, 2, 6, 200000, 4, 5]
-
-nelement = len(x)
-
-def vector_addition(avector, another) : nelement=len(avector) ; return  [avector[i] + another[i] for i in range(nelement)]
+def vector_scal_addition(scalar, avector): return [scalar * i for i in avector]
 
 
-# print(z)
+def vector_addition(avector, another): nelement = len(avector); return [avector[i] + another[i] for i in
+                                                                        range(nelement)]
 
 
 ## inner product
-z = 0
 
-def vector_inner_product(avector,another):
+def vector_inner_product(avector, another):
     z = 0
-    nelement=len(avector)
+    nelement = len(avector)
     for i in range(nelement):
         z += avector[i] * another[i]
 
     return z
 
+
 ## saxpy
 
-def saxpy(scalar,x,y):
-    nelement=len(x)
+def saxpy(scalar, x, y):
+    nelement = len(x)
     for i in range(nelement):
         y[i] = scalar * x[i]
 
-print(y)
 
 ## matrix-vector multiplication and the gapxy
 
@@ -152,41 +135,176 @@ for i in range(nrow):
 
 print(y)
 
+## vector-matrix identity , permutation matrix
+
+
 ## partition matrix
 
 
 ## outer product
 
-A = [[2, 333333, 44273], [23837364, 8373645, 202222]]
+# A = [[2, 333333, 44273], [23837364, 8373645, 202222]]
+#
+# x = [10234234, 23423423423];
+# y = [12929393, 12123, 3423423]
+#
+# m = len(x)
+# n = len(y)
+#
+# for i in range(m):
+#     for j in range(n):
+#         A[i][j] = A[i][j] + x[i] * y[j]
+#
+# print(A)
 
-x = [10234234, 23423423423];
-y = [12929393, 12123, 3423423]
 
-m = len(x)
-n = len(y)
+## exploiting band structure
 
-for i in range(m):
-    for j in range(n):
-        A[i][j] = A[i][j] + x[i] * y[j]
+## mutliply two upper triangular systems
 
-print(A)
+def upper_triangular_matrix_mult(A, B):
+    m = len(A)
+    n = len(A[0])
+    C = A.copy()
+    for i in range(m):
+        for j in range(n):
+            for k in range(j + 1):
+                C[i][j] += A[i][k] * B[k][j]
+
+    return C
 
 
 ## data structures
+
 ## band storage
 
+## identity, permutation matrixes
+
+
+class IdentityMatrix:
+    def __init__(self, n):
+        self.n = n
+        self.identitymatrix = []
+        for i in range(n):
+            self.identitymatrix.append([])
+            self.identitymatrix[i].append(0)
+
+        for i in range(n):
+            self.identitymatrix[i][i] = 1
+
+    def __str__(self):
+        return str(self.identitymatrix)
+
+## exchange matrix
+
+
+class ExchangeMatrix:
+    def __init__(self, n):
+        self.n = n
+        self.identitymatrix = []
+        for i in range(n):
+            self.identitymatrix.append([])
+            self.identitymatrix[i].append(0)
+
+    def __str__(self):
+        return str(self.identitymatrix)
+
+
+## downshift matrix
+
+class DownshiftMatrix:
+    def __init__(self, n):
+        self.n = n
+        self.identitymatrix = []
+        for i in range(n):
+            self.identitymatrix.append([])
+            self.identitymatrix[i].append(0)
+
+        max = len(E[0]) - 1
+        self.identitymatrix[0][max] = 1
+        for i in range(max):
+            self.identitymatrix[i + 1][i] = 1
+
+    def __str__(self):
+        return str(self.identitymatrix)
+
+## block matrix
+
+
+class BlockMatrix:
+    def __init__(self, m, n):
+        self.m = m
+        self.n = n
+        self.blockmatrix = [[]]
+        for i in range(m):
+            self.blockmatrix.append([])
+            for j in range(n):
+                self.blockmatrix[0].append(0)
+
+
+
+    def __str__(self):
+        return str(self.blockmatrix)
+
+
+class BlockMatrix:
+    def __init__(self, m, n):
+        self.m = m
+        self.n = n
+        self.blockmatrix = []
+        for i in range(m):
+            self.blockmatrix.append([])
+            for j in range(n):
+                self.blockmatrix[i].append([])
+
+    def __str__(self):
+        return str(self.blockmatrix)
+
+    def multiplication(amatrix, another):
+        m = len(amatrix)
+        n = len(another[0])
+        p = len(amatrix[0])
+        C = []
+        for i in range(m):
+            temp = []
+            C.append(temp)
+            for j in range(n):
+                C[i].append(0)
+
+        for i in range(m):
+            for j in range(n):
+                for k in range(p):
+                    C[i][j] += amatrix[i][k] * another[k][j]
+
+        return C
+
+    def addition(amatrix, another):
+        nrow = len(amatrix)
+        ncol = len(amatrix[0])
+        C = amatrix.copy()
+        for i in range(nrow):
+            for j in range(ncol):
+                C[i][j] = amatrix[i][j] + another[i][j]
+        return C
+
+    def __add__(self, other):
+        for i in range(2):
+            for j in range(2):
+                for k in range(2):
+                    C[i][j] = self.addition(self.blockmatrix[i][j], self.multiplication( other.blockmatrix[i][k], other.blockmatrix[[k][j] ))
+
+
+## ADT DOK implementation of sparse matrix
 
 class DOK_matrix:
     def __init__(self):
-        self.dictionary={}
+        self.dictionary = {}
 
-
-    def __get__(self, row,col):
-        return self.dictionary.get([row,col])
+    def __get__(self, row, col):
+        return self.dictionary.get([row, col])
 
     def __setitem__(self, row, col, value):
-        self[[row, col]]=value
-
+        self[[row, col]] = value
 
     def __str__(self):
         return str(self.dictionary)
@@ -198,43 +316,23 @@ class DOK_matrix:
                     self.dictionary[i, j] = sparsematrix[i][j]
 
     def transpose(self):
-        transpose={}
+        transpose = {}
         for k in self.dictionary:
-            reversed=self.reverse(k)
-            transpose[reversed]=self.dictionary[k]
+            reversed = self.reverse(k)
+            transpose[reversed] = self.dictionary[k]
 
         return transpose
 
     def reverse(self, tuple):
-        new_tup=tuple[::-1]
+        new_tup = tuple[::-1]
         return new_tup
 
-    def scalar_addition(self,scalar):
-        C={}
+    def scalar_addition(self, scalar):
+        C = {}
         for key in self.dictionary:
-            C[key]=self.dictionary[key] * scalar
+            C[key] = self.dictionary[key] * scalar
 
         return C
-
-    # def gauss(A, b, x, n):
-    #
-    #     L = np.tril(A)
-    #     U = A - L
-    #     for i in range(n):
-    #         x = np.dot(np.linalg.inv(L), b - np.dot(U, x))
-    #         print(x)
-    #     return x
-    #
-    # A = np.array([[4.0, -2.0, 1.0], [1.0, -3.0, 2.0], [-1.0, 2.0, 6.0]])
-    # b = [1.0, 2.0, 3.0]
-    # x = [1, 1, 1]
-    # n = 20
-    #
-    # print(gauss(A, b, x, n))
-    # end=time.time()
-    # total=end-start
-
-    ## region: using linked list for sparse matrix : https://www.geeksforgeeks.org/sparse-matrix-representation/
 
     class compactMatrixNode:
         def __init__(self):
@@ -295,12 +393,22 @@ class DOK_matrix:
         def __repr__(self):
             return f'{self.head}'
 
-    def convertSparsetoCompact(nested_list):
-        compactMatrix = compactMatrixLinkedList()
-        for row in range(len(nested_list[0:])):
-            for column in range(len(nested_list[row:][0])):
-                if nested_list[row][column] != 0:
-                    print('Storing {} in row {} and column {}'.format(nested_list[row][column], row, column))
-                    compactMatrix.add(nested_list[row][column], row, column)
 
-        return compactMatrix
+def convertSparsetoCompact(nested_list):
+    compactMatrix = compactMatrixLinkedList()
+    for row in range(len(nested_list[0:])):
+        for column in range(len(nested_list[row:][0])):
+            if nested_list[row][column] != 0:
+                print('Storing {} in row {} and column {}'.format(nested_list[row][column], row, column))
+                compactMatrix.add(nested_list[row][column], row, column)
+
+    return compactMatrix
+
+
+# if __name__ == '__main__':
+    ## test functions
+
+    A=[[],[],[],[],[],[]]
+
+
+    ## test classes and methods
